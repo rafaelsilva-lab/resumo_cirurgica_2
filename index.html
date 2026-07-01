@@ -25,14 +25,17 @@
   font-size: 16px;
 }
 *{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
+html,body{margin:0;padding:0; max-width:100%; overflow-x:hidden;}
 body{
   background:var(--paper);
   color:var(--ink);
   font-family: 'Segoe UI', Calibri, Arial, sans-serif;
   line-height:1.55;
   -webkit-font-smoothing:antialiased;
+  overflow-wrap:break-word;
+  word-break:break-word;
 }
+img,svg,table{max-width:100%;}
 
 /* ===== HEADER ===== */
 header.top{
@@ -221,12 +224,14 @@ main{max-width:980px;margin:0 auto;padding:22px 18px 70px;}
   font-size:1.05rem;
   flex-shrink:0;
 }
+.tempo-head > div:not(.icon){flex:1 1 auto; min-width:0;}
 .tempo-head h4{margin:0; font-size:1.05rem; color:var(--charcoal);}
 .tempo-head .tag{
   font-size:.72rem; color:var(--muted); margin-top:2px;
 }
 .tempo-head .chev{
-  margin-left:auto;
+  margin-left:8px;
+  flex-shrink:0;
   transition:transform .25s;
   color:var(--muted);
   font-size:1.1rem;
@@ -372,7 +377,7 @@ table.retirada tr:nth-child(even) td{background:#faf9f7;}
 }
 .dot-abs{background:var(--teal);}
 .dot-inabs{background:var(--red);}
-.fio-head h5{margin:0; font-size:.95rem; color:var(--charcoal);}
+.fio-head h5{margin:0; font-size:.95rem; color:var(--charcoal); flex:1 1 auto; min-width:0;}
 .fio-head .fio-type{
   font-size:.68rem;
   font-weight:700;
@@ -380,11 +385,12 @@ table.retirada tr:nth-child(even) td{background:#faf9f7;}
   text-transform:uppercase;
   padding:2px 8px;
   border-radius:999px;
-  margin-left:auto;
+  white-space:nowrap;
+  flex-shrink:0;
 }
 .fio-type.abs{background:var(--teal-soft); color:var(--teal);}
 .fio-type.inabs{background:var(--red-soft); color:var(--red-dark);}
-.fio-chev{color:var(--muted); font-size:1rem; transition:transform .25s;}
+.fio-chev{color:var(--muted); font-size:1rem; transition:transform .25s; flex-shrink:0; margin-left:4px;}
 .fio-card.open .fio-chev{transform:rotate(180deg);}
 .fio-body{
   max-height:0; overflow:hidden; transition:max-height .35s ease;
@@ -687,7 +693,8 @@ footer{
   </div>
 
   <div class="section-title"><span class="num">3</span> Retirada de pontos por região do corpo</div>
-  <table class="retirada">
+  <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:10px; margin:14px 0 28px;">
+  <table class="retirada" style="margin:0; min-width:360px;">
     <thead><tr><th>Área do corpo</th><th>Retirada dos pontos</th></tr></thead>
     <tbody>
       <tr><td>Face e pescoço</td><td>5 a 8 dias</td></tr>
@@ -701,6 +708,7 @@ footer{
       <tr><td>Planta e palma</td><td>10 a 21 dias</td></tr>
     </tbody>
   </table>
+  </div>
 
   <div class="section-title"><span class="num">4</span> Tipos de fio</div>
   <p class="section-sub">Filtre por absorvíveis ou inabsorvíveis, e toque para expandir</p>
@@ -1018,24 +1026,47 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-// Accordion tempos
-function toggleCard(head){
-  const card = head.parentElement;
-  card.classList.toggle('open');
-  const body = card.querySelector('.tempo-body');
-  body.style.maxHeight = card.classList.contains('open') ? body.scrollHeight + 'px' : 0;
+// Accordion generic: animates open with a measured px value, then releases
+// to max-height:none once the transition ends so content never gets clipped
+// later (screen rotation, resize, zoom, font reflow, etc). While closing it
+// goes back through a measured px value so the collapse animation still works.
+function openBody(body){
+  body.style.maxHeight = body.scrollHeight + 'px';
+  body.addEventListener('transitionend', function done(e){
+    if(e.propertyName !== 'max-height') return;
+    body.removeEventListener('transitionend', done);
+    if(body.parentElement.classList.contains('open')){
+      body.style.maxHeight = 'none';
+    }
+  });
 }
-// Accordion fios
-function toggleFio(head){
-  const card = head.parentElement;
-  card.classList.toggle('open');
-  const body = card.querySelector('.fio-body');
-  body.style.maxHeight = card.classList.contains('open') ? body.scrollHeight + 'px' : 0;
+function closeBody(body){
+  // if currently 'none', set an explicit px first so the transition has a start point
+  if(body.style.maxHeight === 'none' || body.style.maxHeight === ''){
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+  // force reflow so the browser registers the px value before collapsing to 0
+  body.offsetHeight;
+  body.style.maxHeight = '0px';
 }
 
-// Init: open tempo cards by default (already have .open class), set max-height
+function toggleCard(head){
+  const card = head.parentElement;
+  const body = card.querySelector('.tempo-body');
+  card.classList.toggle('open');
+  card.classList.contains('open') ? openBody(body) : closeBody(body);
+}
+function toggleFio(head){
+  const card = head.parentElement;
+  const body = card.querySelector('.fio-body');
+  card.classList.toggle('open');
+  card.classList.contains('open') ? openBody(body) : closeBody(body);
+}
+
+// Init: tempo cards start open by default — skip the px measurement entirely
+// and go straight to max-height:none so there's zero risk of clipping on load.
 document.querySelectorAll('.tempo-card.open .tempo-body').forEach(b=>{
-  b.style.maxHeight = b.scrollHeight + 'px';
+  b.style.maxHeight = 'none';
 });
 
 // Filter fios
