@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cirúrgica I — Tempos Cirúrgicos & Fios Cirúrgicos</title>
+<style>
+:root{
+  --red: #8b1538;
+  --red-dark: #5c0f26;
+  --red-soft: #f3e3e7;
+  --charcoal: #191c22;
+  --charcoal-2: #262b34;
+  --steel: #35586b;
+  --steel-soft: #e7eef1;
+  --teal: #256a5e;
+  --teal-soft: #e2f0ec;
+  --gold: #b98a2e;
+  --ink: #23262d;
+  --muted: #6b7078;
+  --paper: #fbfaf8;
+  --card: #ffffff;
+  --line: #e7e3dd;
+  --radius: 14px;
+  font-size: 16px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== HEADER ===== */
+header.top{
+  background: linear-gradient(135deg, var(--charcoal) 0%, var(--red-dark) 130%);
+  color:#fff;
+  padding: 34px 20px 26px;
+  position:relative;
+  overflow:hidden;
+}
+header.top::after{
+  content:"";
+  position:absolute; right:-60px; top:-60px;
+  width:220px;height:220px;border-radius:50%;
+  background:rgba(255,255,255,0.05);
+}
+.top-inner{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.72rem;
+  color:#e8c7cf;
+  font-weight:600;
+  margin-bottom:8px;
+}
+h1.title{
+  font-size:1.85rem;
+  margin:0 0 6px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+.subtitle{
+  color:#d9cfd0;
+  font-size:.95rem;
+  margin:0;
+}
+.badge-row{
+  display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;
+}
+.badge{
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.18);
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:.75rem;
+  color:#f1e6e8;
+}
+
+/* ===== TABS ===== */
+nav.tabs{
+  position:sticky; top:0; z-index:50;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+.tabs-inner{
+  max-width:980px;margin:0 auto;
+  display:flex;
+}
+.tab-btn{
+  flex:1;
+  padding:14px 10px;
+  text-align:center;
+  background:none;
+  border:none;
+  font-size:.92rem;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+  border-bottom:3px solid transparent;
+  transition:.2s;
+  font-family:inherit;
+}
+.tab-btn.active{
+  color:var(--red);
+  border-bottom-color:var(--red);
+}
+.tab-btn:hover{color:var(--red-dark);}
+
+main{max-width:980px;margin:0 auto;padding:22px 18px 70px;}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* ===== SECTION HEADERS ===== */
+.section-title{
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--charcoal);
+  margin:34px 0 6px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.section-title:first-child{margin-top:6px;}
+.section-title .num{
+  background:var(--red);
+  color:#fff;
+  width:28px;height:28px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;
+  flex-shrink:0;
+}
+.section-sub{
+  color:var(--muted);
+  font-size:.88rem;
+  margin:0 0 16px 38px;
+}
+
+/* ===== IMPORTANCE BANNER ===== */
+.importance{
+  background:linear-gradient(135deg, var(--red-soft), #fff);
+  border:1px solid #e6c9d1;
+  border-radius:var(--radius);
+  padding:20px 22px;
+  margin:14px 0 26px;
+}
+.importance h3{
+  margin:0 0 8px;
+  color:var(--red-dark);
+  font-size:1.02rem;
+  display:flex; align-items:center; gap:8px;
+}
+.importance p{margin:0 0 8px; font-size:.93rem;}
+.importance p:last-child{margin-bottom:0;}
+.importance strong{color:var(--red-dark);}
+
+/* ===== FLOW OF 4 TEMPOS ===== */
+.flow{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:18px 0 30px;
+}
+.flow-item{
+  background:var(--card);
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  padding:14px 10px;
+  text-align:center;
+  position:relative;
+}
+.flow-item .fnum{
+  font-size:.7rem;
+  color:var(--muted);
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.flow-item .fname{
+  font-weight:700;
+  color:var(--red-dark);
+  font-size:.95rem;
+  margin-top:2px;
+}
+.flow-item .fdesc{
+  font-size:.72rem;
+  color:var(--muted);
+  margin-top:4px;
+}
+@media (max-width:640px){
+  .flow{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ===== CARD (tempo cirurgico) ===== */
+.tempo-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  margin-bottom:18px;
+  overflow:hidden;
+}
+.tempo-head{
+  padding:16px 18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  user-select:none;
+}
+.tempo-head .icon{
+  width:38px;height:38px;
+  border-radius:10px;
+  background:var(--red-soft);
+  color:var(--red-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+  font-size:1.05rem;
+  flex-shrink:0;
+}
+.tempo-head h4{margin:0; font-size:1.05rem; color:var(--charcoal);}
+.tempo-head .tag{
+  font-size:.72rem; color:var(--muted); margin-top:2px;
+}
+.tempo-head .chev{
+  margin-left:auto;
+  transition:transform .25s;
+  color:var(--muted);
+  font-size:1.1rem;
+}
+.tempo-card.open .chev{transform:rotate(180deg);}
+.tempo-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease;
+  padding:0 18px;
+}
+.tempo-card.open .tempo-body{padding:0 18px 18px;}
+.tempo-body p{font-size:.9rem; margin:0 0 10px; color:var(--ink);}
+.tempo-body .lead{
+  background:var(--paper);
+  border-left:3px solid var(--red);
+  padding:10px 14px;
+  border-radius:0 8px 8px 0;
+  font-size:.88rem;
+  margin-bottom:14px;
+}
+
+/* sub-grid for diérese/hemostase types */
+.subgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:6px;
+}
+@media(max-width:640px){.subgrid{grid-template-columns:1fr;}}
+.subcard{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 14px;
+}
+.subcard .stitle{
+  font-weight:700;
+  font-size:.85rem;
+  color:var(--red-dark);
+  margin-bottom:4px;
+}
+.subcard p{font-size:.82rem; margin:0; color:var(--ink);}
+.subcard.group-header{
+  grid-column:1 / -1;
+  background:none;
+  border:none;
+  padding:6px 0 0;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.mini-list{
+  font-size:.85rem;
+  padding-left:18px;
+  margin:6px 0 12px;
+}
+.mini-list li{margin-bottom:4px;}
+
+/* ===== FIOS SECTION ===== */
+.filter-row{
+  display:flex; gap:8px; margin:14px 0 18px; flex-wrap:wrap;
+}
+.filter-btn{
+  padding:8px 16px;
+  border-radius:999px;
+  border:1.5px solid var(--line);
+  background:#fff;
+  font-size:.82rem;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+  font-family:inherit;
+}
+.filter-btn.active{
+  border-color:var(--steel);
+  background:var(--steel-soft);
+  color:var(--steel);
+}
+
+.prop-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:14px 0 26px;
+}
+@media(max-width:640px){.prop-grid{grid-template-columns:1fr;}}
+.prop-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 14px;
+}
+.prop-card .ptitle{
+  font-weight:700;
+  font-size:.84rem;
+  color:var(--steel);
+  margin-bottom:4px;
+}
+.prop-card p{font-size:.8rem;margin:0;color:var(--ink);}
+
+table.retirada{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.82rem;
+  margin:14px 0 28px;
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+table.retirada th{
+  background:var(--steel);
+  color:#fff;
+  padding:9px 12px;
+  text-align:left;
+  font-weight:600;
+}
+table.retirada td{
+  padding:8px 12px;
+  border-top:1px solid var(--line);
+}
+table.retirada tr:nth-child(even) td{background:#faf9f7;}
+
+.fio-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  margin-bottom:12px;
+  overflow:hidden;
+}
+.fio-head{
+  padding:13px 16px;
+  display:flex; align-items:center; gap:10px;
+  cursor:pointer; user-select:none;
+}
+.fio-dot{
+  width:10px;height:10px;border-radius:50%;
+  flex-shrink:0;
+}
+.dot-abs{background:var(--teal);}
+.dot-inabs{background:var(--red);}
+.fio-head h5{margin:0; font-size:.95rem; color:var(--charcoal);}
+.fio-head .fio-type{
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:2px 8px;
+  border-radius:999px;
+  margin-left:auto;
+}
+.fio-type.abs{background:var(--teal-soft); color:var(--teal);}
+.fio-type.inabs{background:var(--red-soft); color:var(--red-dark);}
+.fio-chev{color:var(--muted); font-size:1rem; transition:transform .25s;}
+.fio-card.open .fio-chev{transform:rotate(180deg);}
+.fio-body{
+  max-height:0; overflow:hidden; transition:max-height .35s ease;
+  padding:0 16px;
+}
+.fio-card.open .fio-body{padding:0 16px 16px;}
+.fio-facts{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px 14px;
+  font-size:.8rem;
+  margin-bottom:10px;
+}
+@media(max-width:520px){.fio-facts{grid-template-columns:1fr;}}
+.fio-facts div b{color:var(--muted); font-weight:600; display:block; font-size:.68rem; text-transform:uppercase; letter-spacing:.04em;}
+.fio-uses{
+  font-size:.82rem;
+  background:var(--paper);
+  border-radius:8px;
+  padding:8px 12px;
+  margin-top:6px;
+}
+
+/* ===== callout / dica ===== */
+.callout{
+  background:var(--charcoal);
+  color:#f2ede9;
+  border-radius:var(--radius);
+  padding:18px 20px;
+  margin:26px 0;
+  font-size:.88rem;
+}
+.callout h4{margin:0 0 8px; color:#e8c7cf; font-size:.95rem;}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:.75rem;
+  padding:24px 18px 40px;
+}
+
+/* scroll to top button */
+#toTop{
+  position:fixed; bottom:20px; right:20px;
+  width:42px;height:42px;border-radius:50%;
+  background:var(--red); color:#fff;
+  border:none; cursor:pointer;
+  display:none; align-items:center; justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+  font-size:1.1rem;
+  z-index:60;
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="eyebrow">Faculdade de Saúde Santa Casa BH · Técnico em Enfermagem · Turma 8N</div>
+    <h1 class="title">Cirúrgica I — Resumo de Prova</h1>
+    <p class="subtitle">Tempos Cirúrgicos e Fios Cirúrgicos: o essencial para revisar antes da prova.</p>
+    <div class="badge-row">
+      <span class="badge">Diérese · Hemostasia · Exérese · Síntese</span>
+      <span class="badge">Fios absorvíveis e inabsorvíveis</span>
+      <span class="badge">Instrumentais: revisar direto no slide</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="tempos">Tempos Cirúrgicos</button>
+    <button class="tab-btn" data-tab="fios">Fios Cirúrgicos</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ PAINEL TEMPOS CIRÚRGICOS ============ -->
+<section class="panel active" id="panel-tempos">
+
+  <div class="importance">
+    <h3>⚠️ Por que os Tempos Cirúrgicos caem tanto na prova</h3>
+    <p>Tempos cirúrgicos são <strong>as manobras consecutivas realizadas pelo cirurgião do início ao fim da operação</strong>. Eles não são "curiosidade teórica": é a lógica que organiza toda cirurgia, do primeiro corte ao fechamento da ferida.</p>
+    <p>Saber a <strong>ordem e a função de cada tempo</strong> é o que permite à equipe (cirurgião, instrumentador, circulante) antecipar o próximo passo, separar o instrumental certo na hora certa e entender <em>por que</em> um determinado instrumento está sendo pedido — é a espinha dorsal do raciocínio cirúrgico que a prova cobra.</p>
+    <p>São <strong>4 tempos</strong>, sempre nesta sequência lógica: <strong>Diérese → Hemostasia → Exérese → Síntese.</strong></p>
+  </div>
+
+  <div class="flow">
+    <div class="flow-item"><div class="fnum">1º TEMPO</div><div class="fname">Diérese</div><div class="fdesc">Separar tecidos</div></div>
+    <div class="flow-item"><div class="fnum">2º TEMPO</div><div class="fname">Hemostasia</div><div class="fdesc">Conter sangramento</div></div>
+    <div class="flow-item"><div class="fnum">3º TEMPO</div><div class="fname">Exérese</div><div class="fdesc">Tratamento cirúrgico</div></div>
+    <div class="flow-item"><div class="fnum">4º TEMPO</div><div class="fname">Síntese</div><div class="fdesc">Reunir/fechar tecidos</div></div>
+  </div>
+
+  <div class="section-title"><span class="num">1</span> Diérese</div>
+  <p class="section-sub">Início da cirurgia — separação dos planos anatômicos</p>
+
+  <div class="tempo-card open">
+    <div class="tempo-head" onclick="toggleCard(this)">
+      <div class="icon">✂️</div>
+      <div>
+        <h4>O que é</h4>
+        <div class="tag">Toque no assunto que mais aparece em prova</div>
+      </div>
+      <div class="chev">▾</div>
+    </div>
+    <div class="tempo-body">
+      <p class="lead">É o <strong>rompimento da continuidade dos tecidos</strong> — separação de planos anatômicos, de um órgão ou de uma região (cavitária ou de superfície). O ato operatório começa com o pedido e a entrega do bisturi: o cirurgião incisiona pele e subcutâneo e devolve o bisturi ao instrumentador, que o guarda em seu lugar — <strong>importante:</strong> não se reutiliza a mesma lâmina dentro da cavidade, ela deve ser trocada.</p>
+      <p><strong>A Diérese se divide em dois grandes grupos: Mecânica e Física.</strong></p>
+
+      <div class="subgrid">
+        <div class="subcard group-header">Diérese Mecânica</div>
+        <div class="subcard">
+          <div class="stitle">Punção</div>
+          <p>Introdução de agulha/trocarte nos tecidos <strong>sem seccioná-los</strong>. Serve para drenar coleções líquidas, colher fragmentos/líquidos para exame, ou injetar contraste e medicamentos.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Secção</div>
+          <p>Segmentação dos tecidos com material cortante: tesouras, serras, lâminas ou bisturi elétrico.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Divulsão</div>
+          <p>Afastamento dos tecidos nos planos anatômicos com tesouras de bordas rombas, tentacânulas ou afastadores.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Curetagem</div>
+          <p>Raspagem da superfície de um órgão com auxílio de cureta.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Dilatação</div>
+          <p>Aumenta a luz (calibre interno) de um órgão tubular.</p>
+        </div>
+
+        <div class="subcard group-header">Diérese Física</div>
+        <div class="subcard">
+          <div class="stitle">Térmica</div>
+          <p>Uso de calor, cuja fonte é energia elétrica (bisturi elétrico).</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Crioterapia</div>
+          <p>Resfriamento brusco e intenso da área a ser operada.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Laser</div>
+          <p>Feixe de radiação — ondas luminosas infravermelhas concentradas e de alta potência.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">2</span> Hemostasia</div>
+  <p class="section-sub">Controle do sangramento — protege o campo cirúrgico e o paciente</p>
+
+  <div class="tempo-card open">
+    <div class="tempo-head" onclick="toggleCard(this)">
+      <div class="icon">🩸</div>
+      <div>
+        <h4>Interrupção do fluxo sanguíneo</h4>
+        <div class="tag">Prévia/preventiva x Temporária x Definitiva</div>
+      </div>
+      <div class="chev">▾</div>
+    </div>
+    <div class="tempo-body">
+      <p class="lead">Objetivo: <strong>interromper (provisória ou definitivamente) o fluxo de sangue</strong> na ferida cirúrgica, prevenindo ou diminuindo a perda sanguínea. Pode ser classificada por momento e por caráter.</p>
+
+      <div class="subgrid">
+        <div class="subcard group-header">Hemostasia prévia / preventiva / pré-operatória</div>
+        <div class="subcard">
+          <div class="stitle">Medicamentosa</div>
+          <p>Baseada nos exames laboratoriais do paciente.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Cirúrgica</div>
+          <p>Interrompe provisoriamente o fluxo de sangue para a ferida, prevenindo/diminuindo a perda sanguínea.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Urgência</div>
+          <p>Realizada quase sempre em condições desfavoráveis, com material improvisado. Ex: garrotes, torniquetes, compressão digital.</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Curativa</div>
+          <p>Realizada durante a intervenção cirúrgica — pode ser medicamentosa, mecânica, física ou biológica.</p>
+        </div>
+
+        <div class="subcard group-header">Quanto à duração</div>
+        <div class="subcard">
+          <div class="stitle">Temporária</div>
+          <p>Feita durante a cirurgia para deter/impedir o fluxo de sangue no local (compressão com instrumentais, pinças, medicações, hemostáticos).</p>
+        </div>
+        <div class="subcard">
+          <div class="stitle">Definitiva</div>
+          <p>Obliteração do vaso sanguíneo em caráter <strong>permanente</strong>: sutura, eletrocoagulação, laqueadura, uso de hemostáticos.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:14px;"><strong>Outras formas de hemostasia (fora as pinças):</strong></p>
+      <ul class="mini-list">
+        <li><strong>Eletrocautério</strong> — método mais eficiente, usa cauterização dos tecidos para fechar pequenos vasos.</li>
+        <li><strong>Cera para osso</strong> — cera de abelha, veda vasos sangrantes no osso (ortopedia/neurocirurgia).</li>
+        <li><strong>Adstringente</strong> — controla hemorragia contraindo vasos (ex: adrenalina, ácido tânico).</li>
+        <li><strong>Espuma de gelatina</strong> — absorvente, incha sobre sangramento capilar formando coágulo substancial.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">3</span> Exérese</div>
+  <p class="section-sub">O tempo fundamental — o "coração" da cirurgia</p>
+
+  <div class="tempo-card open">
+    <div class="tempo-head" onclick="toggleCard(this)">
+      <div class="icon">🎯</div>
+      <div>
+        <h4>É a cirurgia propriamente dita</h4>
+        <div class="tag">Momento de maior importância da operação</div>
+      </div>
+      <div class="chev">▾</div>
+    </div>
+    <div class="tempo-body">
+      <p class="lead">A Exérese é <strong>a realização do tratamento cirúrgico em si</strong> — de caráter curativo, paliativo, estético/corretivo, ou com fim diagnóstico. É o <strong>tempo cirúrgico fundamental</strong>: onde efetivamente é executado o tratamento (retirada do órgão/lesão, correção, etc).</p>
+      <p>Nessa etapa entram os <strong>instrumentos especiais</strong>, usados no momento de maior importância da cirurgia — eles variam conforme a especialidade e a área operada (ex: pinças ginecológicas, dilatadores renais/biliares, afastadores dinâmicos e autoestáticos). Esses instrumentais específicos não entram neste resumo — revise pelas imagens do slide original.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">4</span> Síntese</div>
+  <p class="section-sub">O fechamento — completa o ciclo dos tempos cirúrgicos</p>
+
+  <div class="tempo-card open">
+    <div class="tempo-head" onclick="toggleCard(this)">
+      <div class="icon">🧵</div>
+      <div>
+        <h4>Reunião e fechamento dos tecidos</h4>
+        <div class="tag">Conecta diretamente com Fios Cirúrgicos</div>
+      </div>
+      <div class="chev">▾</div>
+    </div>
+    <div class="tempo-body">
+      <p class="lead">É o <strong>4º e último tempo cirúrgico</strong>: consiste na reconstituição/união dos planos e tecidos que foram separados na Diérese, encerrando a cirurgia. É executada, tipicamente, com <strong>fios de sutura</strong> — por isso o assunto "Fios Cirúrgicos" é o complemento direto da Síntese.</p>
+      <p>Veja o resumo completo de fios na outra aba desta página.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>💡 Para fixar na prova</h4>
+    Pensa na sequência como uma frase: <strong>"eu separo (Diérese), eu estanco (Hemostasia), eu trato (Exérese) e eu fecho (Síntese)."</strong> Qualquer questão que descreva uma ação do cirurgião, pergunte a si mesmo: essa ação está separando, contendo sangue, tratando ou fechando? A resposta é o tempo cirúrgico.
+  </div>
+
+</section>
+
+<!-- ============ PAINEL FIOS CIRÚRGICOS ============ -->
+<section class="panel" id="panel-fios">
+
+  <div class="importance" style="background:linear-gradient(135deg, var(--steel-soft), #fff); border-color:#c9d8de;">
+    <h3 style="color:var(--steel);">🧵 O que são e por que importam</h3>
+    <p>Fios de sutura são os materiais usados para <strong>ligar vasos sangrantes</strong> e <strong>unir/adaptar extremidades de tecidos lesados</strong>, facilitando a cicatrização. Eles executam, na prática, o 4º tempo cirúrgico: a <strong>Síntese</strong>.</p>
+    <p>O <strong>aspecto final da cicatriz</strong> depende diretamente da qualidade do fio escolhido — por isso a prova cobra tanto as propriedades quanto os tipos específicos.</p>
+  </div>
+
+  <div class="section-title"><span class="num">1</span> Fio ideal e escolha do fio</div>
+
+  <div class="prop-grid">
+    <div class="prop-card">
+      <div class="ptitle">Características do fio ideal</div>
+      <p>Resistente · biologicamente inerte · fácil manuseio · absorvível.</p>
+    </div>
+    <div class="prop-card">
+      <div class="ptitle">Fatores que influenciam a escolha</div>
+      <p>Presença de infecção/secreção; tipo de tecido (pele, tendão, nervo, vaso, coração); idade e estado nutricional do paciente; obesidade; tempo desejável de permanência do fio; preferência do cirurgião e material disponível.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">2</span> Propriedades técnicas</div>
+  <p class="section-sub">O "porquê" por trás da escolha de cada fio</p>
+
+  <div class="prop-grid">
+    <div class="prop-card">
+      <div class="ptitle">Força tensil</div>
+      <p>Resistência à tração/torção sem romper. Precisa ser igual ou pouco maior que a resistência dos tecidos suturados, e se manter até a fase de cicatrização.</p>
+    </div>
+    <div class="prop-card">
+      <div class="ptitle">Material / origem</div>
+      <p>Biológico ou sintético — define força tensil, reação inflamatória, antigenicidade, alergenicidade e velocidade de absorção.</p>
+    </div>
+    <div class="prop-card">
+      <div class="ptitle">Configuração</div>
+      <p>Monofilamentares (mais duros, "memória", soltam nó mais fácil, menos aderência bacteriana) ou multifilamentares/trançados (mais maleáveis).</p>
+    </div>
+    <div class="prop-card">
+      <div class="ptitle">Absorção</div>
+      <p>Fios absorvíveis são destruídos por hidrólise/fagocitose, perdendo força tensil progressivamente até desintegração total.</p>
+    </div>
+    <div class="prop-card">
+      <div class="ptitle">Reatividade inflamatória</div>
+      <p>Maior em fios biológicos (pico em 7 dias). Inabsorvíveis, do mais ao menos reativo: polipropileno → nylon → poliéster → seda/algodão → algodão/linho.</p>
+    </div>
+    <div class="prop-card">
+      <div class="ptitle">Crescimento bacteriano</div>
+      <p>Maior em multifilamentares trançados (bactérias se abrigam entre as malhas). Cobertura de silicone/teflon reduz o risco.</p>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">3</span> Retirada de pontos por região do corpo</div>
+  <table class="retirada">
+    <thead><tr><th>Área do corpo</th><th>Retirada dos pontos</th></tr></thead>
+    <tbody>
+      <tr><td>Face e pescoço</td><td>5 a 8 dias</td></tr>
+      <tr><td>Couro cabeludo, nuca</td><td>14 dias</td></tr>
+      <tr><td>Dorso da mão e do pé</td><td>14 dias</td></tr>
+      <tr><td>Tronco</td><td>21 dias</td></tr>
+      <tr><td>Região glútea</td><td>14 dias</td></tr>
+      <tr><td>Ombro e dorso</td><td>28 dias</td></tr>
+      <tr><td>Braços e coxa</td><td>14 a 18 dias</td></tr>
+      <tr><td>Antebraço e pernas</td><td>14 a 21 dias</td></tr>
+      <tr><td>Planta e palma</td><td>10 a 21 dias</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title"><span class="num">4</span> Tipos de fio</div>
+  <p class="section-sub">Filtre por absorvíveis ou inabsorvíveis, e toque para expandir</p>
+
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="abs">Absorvíveis</button>
+    <button class="filter-btn" data-filter="inabs">Inabsorvíveis</button>
+  </div>
+
+  <!-- ABSORVÍVEIS -->
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Catgut Simples</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Natural</div>
+        <div><b>Composição</b>Serosa de intestino bovino / submucosa de intestino ovino</div>
+        <div><b>Força tensil</b>7 a 10 dias</div>
+        <div><b>Absorção</b>70 dias</div>
+        <div><b>Esterilização</b>Cobalto 60</div>
+        <div><b>Apresentação</b>6-0 a 1</div>
+      </div>
+      <div class="fio-uses">Fechamento geral (peritônio, subcutâneo, ligaduras), Ob-Gin, gastrointestinal, urologia, oftalmologia (conjuntiva), amigdalectomias.</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Catgut Cromado</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Natural</div>
+        <div><b>Composição</b>Serosa de intestino bovino / submucosa de intestino ovino, impregnado com sais de cromo/tânio</div>
+        <div><b>Força tensil</b>21 a 28 dias</div>
+        <div><b>Absorção</b>90 dias</div>
+        <div><b>Esterilização</b>Cobalto 60</div>
+        <div><b>Apresentação</b>5-0 a 10</div>
+      </div>
+      <div class="fio-uses">Mesmas indicações do catgut simples — o cromo aumenta o tempo de força tensil e absorção. Ambos mantidos em álcool isopropílico.</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Caprofyl</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliglecaprone 25</div>
+        <div><b>Força tensil</b>21 dias</div>
+        <div><b>Absorção</b>91 a 119 dias</div>
+      </div>
+      <div class="fio-uses">Fechamento geral, Ob-Gin (ligadura, cúpula vaginal, útero, parede vaginal), gastrointestinal, urologia.</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Monocryl</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliglecaprone 25</div>
+        <div><b>Força tensil</b>21 dias</div>
+        <div><b>Absorção</b>91 a 119 dias</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>5-0 a 3-0</div>
+      </div>
+      <div class="fio-uses">Indicado para plástica (pele).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Vicryl</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliglactina 910 + poliglactina 370 + estearato de cálcio</div>
+        <div><b>Força tensil</b>28 dias</div>
+        <div><b>Absorção</b>56 a 70 dias</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>10-0 a 2</div>
+      </div>
+      <div class="fio-uses">Fechamento geral (peritônio, aponeurose, serosa, submucosa, pele), neurologia (dura-máter), oftalmologia, gastrointestinal, Ob-Gin, ortopedia, urologia.</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Vicryl Rapid</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliglactina 910 + poliglactina 370 + estearato de cálcio</div>
+        <div><b>Força tensil</b>10 a 14 dias</div>
+        <div><b>Absorção</b>42 dias</div>
+        <div><b>Esterilização</b>Cobalto 60</div>
+        <div><b>Apresentação</b>6-0 a 10</div>
+      </div>
+      <div class="fio-uses">Fechamento de pele e mucosa, cirurgia plástica, episiorrafias.</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>Vicryl Plus</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-uses">Mesma composição e características do Vicryl comum, mas contém <strong>IRGACARE MP</strong> (forma pura do triclosan), um antisséptico de amplo espectro — não é antibiótico e não é tóxico na concentração usada. Reduz colonização bacteriana ao redor da linha de sutura (protege contra Staphylococcus aureus e S. epidermidis resistentes à meticilina).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="abs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-abs"></span><h5>PDS II</h5>
+      <span class="fio-type abs">Absorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Polidioxanona</div>
+        <div><b>Força tensil</b>42 dias</div>
+        <div><b>Absorção</b>180 dias</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>7 a 20</div>
+      </div>
+      <div class="fio-uses">Fechamento geral, transplante (rim, fígado), gastrointestinal, Ob-Gin, ortopedia, cardiopediatria (coarctação de aorta).</div>
+    </div>
+  </div>
+
+  <!-- INABSORVÍVEIS -->
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Mononylon</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Fibras de linho</div>
+        <div><b>Força tensil</b>perda de 20% ao ano</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>11-0 a 0</div>
+      </div>
+      <div class="fio-uses">Fechamento geral (aponeurose), microcirurgia (anastomose), plástica (pele), oftalmologia (catarata, ceratoplastia, retina, córnea, esclera).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Polycot</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliéster (70%) + algodão (30%)</div>
+        <div><b>Força tensil</b>Permanente</div>
+        <div><b>Esterilização</b>Cobalto 60</div>
+        <div><b>Apresentação</b>4-0 a 0</div>
+      </div>
+      <div class="fio-uses">Fechamento geral (ligadura e pele), gastrointestinal (mucosa, submucosa).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Linho</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Natural</div>
+        <div><b>Composição</b>Fibras de linho</div>
+        <div><b>Força tensil</b>Indeterminado (perde a maior parte em menos de 1 ano)</div>
+        <div><b>Esterilização</b>Cobalto 60</div>
+        <div><b>Apresentação</b>3-0 a 1</div>
+      </div>
+      <div class="fio-uses">Ligaduras gerais, gastrointestinal (mucosa, submucosa).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Seda</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Natural</div>
+        <div><b>Composição</b>Casulo do bicho-da-seda (70% proteína / 30% goma) — fibroína</div>
+        <div><b>Força tensil</b>1 ano</div>
+        <div><b>Esterilização</b>Cobalto 60</div>
+        <div><b>Apresentação</b>8-0 a 1</div>
+      </div>
+      <div class="fio-uses">Fechamento geral (ligaduras), gastrointestinal, neurologia (dura-máter), oftalmologia (catarata, estrabismo), plástica (pele).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Prolene</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Polipropileno</div>
+        <div><b>Força tensil</b>Permanente</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>10-0 a 2</div>
+      </div>
+      <div class="fio-uses">Fechamento geral, gastrointestinal, plástica, cardiovascular (enxerto coronariano, aneurisma aorto-abdominal), oftalmologia (fixação escleral).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Mersilene</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliéster (8 carreiras)</div>
+        <div><b>Força tensil</b>Permanente</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>10-0 a 0</div>
+      </div>
+      <div class="fio-uses">Oftalmologia (estrabismo, transplante de córnea), fechamento geral (ligaduras).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Ethibond</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Poliéster (16 carreiras)</div>
+        <div><b>Força tensil</b>Permanente</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>5-0 a 5</div>
+      </div>
+      <div class="fio-uses">Gastrointestinal (laparoscopia), ortopedia (membranas sinoviais), cardiovascular (canulação, fechamento de esterno, próteses, trocas de válvulas).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Aciflex</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-facts">
+        <div><b>Material</b>Sintético</div>
+        <div><b>Composição</b>Aço inox 316L (baixo carbono)</div>
+        <div><b>Força tensil</b>Permanente</div>
+        <div><b>Esterilização</b>Óxido de etileno</div>
+        <div><b>Apresentação</b>2-0 a 6</div>
+      </div>
+      <div class="fio-uses">Cardiovascular (fechamento de esterno), buco-maxilo (fixação de mandíbula), ortopedia (fixação óssea).</div>
+    </div>
+  </div>
+
+  <div class="fio-card" data-cat="inabs">
+    <div class="fio-head" onclick="toggleFio(this)">
+      <span class="fio-dot dot-inabs"></span><h5>Sternumband</h5>
+      <span class="fio-type inabs">Inabsorvível</span><span class="fio-chev">▾</span>
+    </div>
+    <div class="fio-body">
+      <div class="fio-uses">Fita usada no fechamento do esterno após esternotomia mediana em cirurgias torácicas/cardíacas. Promove estabilização adequada, favorecendo a osteossíntese e prevenindo instabilidade do esterno no pós-operatório — a escolha do fio aqui é crítica para o prognóstico, evitando complicações graves de consolidação esternal.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="background:var(--steel);">
+    <h4 style="color:#dcecef;">💡 Para fixar na prova</h4>
+    Absorvível = some com o tempo, usado em planos internos ou de cicatrização rápida (catgut, vicryl, monocryl, PDS). Inabsorvível = fica no corpo, usado em pele, tecidos permanentes ou próteses (nylon, seda, prolene, aço). Nos quadros de propriedades, o que mais cai é: <strong>tipo de material → composição → tempo de força tensil/absorção → indicação clínica.</strong>
+  </div>
+
+</section>
+
+</main>
+
+<footer>Resumo de apoio aos estudos — Cirúrgica I · Turma 8N · Faculdade de Saúde Santa Casa BH</footer>
+
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// Accordion tempos
+function toggleCard(head){
+  const card = head.parentElement;
+  card.classList.toggle('open');
+  const body = card.querySelector('.tempo-body');
+  body.style.maxHeight = card.classList.contains('open') ? body.scrollHeight + 'px' : 0;
+}
+// Accordion fios
+function toggleFio(head){
+  const card = head.parentElement;
+  card.classList.toggle('open');
+  const body = card.querySelector('.fio-body');
+  body.style.maxHeight = card.classList.contains('open') ? body.scrollHeight + 'px' : 0;
+}
+
+// Init: open tempo cards by default (already have .open class), set max-height
+document.querySelectorAll('.tempo-card.open .tempo-body').forEach(b=>{
+  b.style.maxHeight = b.scrollHeight + 'px';
+});
+
+// Filter fios
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.fio-card').forEach(card=>{
+      if(f==='all' || card.dataset.cat===f){
+        card.style.display='';
+      } else {
+        card.style.display='none';
+      }
+    });
+  });
+});
+
+// Scroll to top button visibility
+window.addEventListener('scroll', ()=>{
+  document.getElementById('toTop').style.display = window.scrollY > 400 ? 'flex' : 'none';
+});
+</script>
+
+</body>
+</html>
